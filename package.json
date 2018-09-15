@@ -1,6 +1,6 @@
 {
   "name": "native-messaging",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Native Messaging Host Protocol for Browser Extensions",
   "keywords": [
     "native",

@@ -1,0 +1,33 @@
+{
+  "name": "native-messaging",
+  "version": "0.0.0",
+  "description": "Native Messaging Host Protocol for Browser Extensions",
+  "keywords": [
+    "native",
+    "messaging",
+    "host",
+    "protocol",
+    "browser",
+    "extension"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/simov/native-messaging",
+  "author": "Simeon Velichkov <simeonvelichkov@gmail.com> (https://simov.github.io)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simov/native-messaging.git"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "bin": {},
+  "main": "./protocol.js",
+  "files": [
+    "protocol.js",
+    "LICENSE",
+    "README.md",
+    "package.json"
+  ],
+  "engines": {
+    "node": ">=4.0.0"
+  }
+}

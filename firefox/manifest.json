@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+  "name"            : "Native Messaging",
+  "version"         : "1.0.0",
+  "description"     : "Native Messaging",
+
+  "background": {
+    "persistent": true,
+    "scripts": [
+      "background.js"
+    ]
+  },
+
+  "permissions": [
+    "nativeMessaging"
+  ],
+
+  "applications": {
+    "gecko": {
+      "id": "ping_pong@example.org",
+      "strict_min_version": "57.0"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "native.messaging.example",
+  "description": "Native Messaging Host Protocol Example",
+  "path": "/home/s/projects/native-messaging/nodejs/example.js",
+  "type": "stdio",
+  "allowed_extensions": [
+    "ping_pong@example.org"
+  ]
+}

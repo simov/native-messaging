@@ -1,6 +1,8 @@
 
 # native-messaging
 
+[![npm-version]][npm]
+
 > Native Messaging Host Protocol for Browser Extensions ([Chrome][native-messaging], [Firefox][native-messaging-ff])
 
 # API
@@ -56,6 +58,9 @@ chrome.runtime.sendNativeMessage | [link][send-native-message] | [link][send-nat
 host.json location               | [link][host-location]       | [link][host-location-ff]
 official example                 | [link][example]             | [link][example-ff]
 
+
+  [npm-version]: https://img.shields.io/npm/v/native-messaging.svg?style=flat-square (NPM Package Version)
+  [npm]: https://www.npmjs.com/package/native-messaging
 
   [native-messaging]: https://developer.chrome.com/extensions/nativeMessaging
   [connect-native]: https://developer.chrome.com/extensions/runtime#method-connectNative

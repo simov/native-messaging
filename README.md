@@ -37,7 +37,7 @@ function handleMessage (req) {
 2. Load the extension to get its ID generated
 3. Put the `native.messaging.example.json` in `~/.config/google-chrome/NativeMessagingHosts/` or `~/.mozilla/native-messaging-hosts/`
   - The name of the file should be identical to the `name` field specified in that file
-  - Only dots `.` are allowed as delimiters in the file name
+  - Dots `.` and underscores `_` are allowed as delimiters in the file name
   - The `path` key should be absolute path to your nodejs script `example.js`
   - Chrome - the `allowed_origins` key should contain the extension's ID loaded in step 2
   - Firefox - the `allowed_extensions` key should contain the extension's ID specified in its `manifest.json` file

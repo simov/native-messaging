@@ -1,21 +1,26 @@
+var input = Buffer.from([]);
 
 module.exports = (handleMessage) => {
 
   process.stdin.on('readable', () => {
-    var input = []
-    var chunk
+    var chunks = [input];
+    var chunk;
     while (chunk = process.stdin.read()) {
-      input.push(chunk)
+      chunks.push(chunk)
     }
-    input = Buffer.concat(input)
+    input = Buffer.concat(chunks)
+    while (input.length >= 4) {
+      var msgLen = input.readUInt32LE(0)
+      var dataLen = msgLen + 4
 
-    var msgLen = input.readUInt32LE(0)
-    var dataLen = msgLen + 4
-
-    if (input.length >= dataLen) {
-      var content = input.slice(4, dataLen)
-      var json = JSON.parse(content.toString())
-      handleMessage(json)
+      if (input.length >= dataLen) {
+        var content = input.slice(4, dataLen)
+        var json = JSON.parse(content.toString())
+        handleMessage(json)
+        input = input.slice(dataLen);
+      } else {
+        break;
+      }
     }
   })
 

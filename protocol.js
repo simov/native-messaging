@@ -1,25 +1,10 @@
-
 module.exports = (handleMessage) => {
 
-  process.stdin.on('readable', () => {
-    var input = []
-    var chunk
-    while (chunk = process.stdin.read()) {
-      input.push(chunk)
-    }
-    input = Buffer.concat(input)
+  var msgLen = 0,
+    dataLen = 0,
+    input = []
 
-    var msgLen = input.readUInt32LE(0)
-    var dataLen = msgLen + 4
-
-    if (input.length >= dataLen) {
-      var content = input.slice(4, dataLen)
-      var json = JSON.parse(content.toString())
-      handleMessage(json)
-    }
-  })
-
-  function sendMessage (msg) {
+  function sendMessage(msg) {
     var buffer = Buffer.from(JSON.stringify(msg))
 
     var header = Buffer.alloc(4)
@@ -29,10 +14,34 @@ module.exports = (handleMessage) => {
     process.stdout.write(data)
   }
 
+  process.stdin.on('readable', () => {
+    var chunk
+    while (chunk = process.stdin.read()) {
+      // Set message value length once
+      if (msgLen === 0 && dataLen === 0) {
+        msgLen = chunk.readUInt32LE(0)
+        chunk = chunk.subarray(4)
+      }
+      // Store accrued message length read 
+      dataLen += chunk.length
+      input.push(chunk)
+      if (dataLen === msgLen) {
+        // Send accrued message from client back to client
+        handleMessage(JSON.parse(Buffer.concat(input).toString()))
+        // Reset dynamic variables after sending accrued read message to client
+        msgLen = 0,
+        dataLen = 0,
+        input = []
+      }
+    }
+  })
+
   process.on('uncaughtException', (err) => {
-    sendMessage({error: err.toString()})
+    sendMessage({
+      error: err.toString()
+    })
   })
 
   return sendMessage
-
+  
 }
